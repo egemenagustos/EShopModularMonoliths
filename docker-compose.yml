@@ -2,10 +2,13 @@ version: '3.4'
 
 services:
   eshopdb:
-   image: postgres
-  
+    image: postgres
+
   seq:
     image: datalust/seq:latest
+
+  redis:
+    image: redis
 
 volumes:
   postgres_eshopdb:

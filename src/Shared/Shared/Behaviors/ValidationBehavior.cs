@@ -1,5 +1,6 @@
 using FluentValidation;
 using MediatR;
+using Shared.Contracts.CQRS;
 
 namespace Shared.Behaviors;
 

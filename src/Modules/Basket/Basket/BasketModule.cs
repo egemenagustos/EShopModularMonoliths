@@ -10,6 +10,15 @@ public static class BasketModule
 {
     public static IServiceCollection AddBasketModule(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<IBasketRepository, BasketRepository>();
+        services.Decorate<IBasketRepository, CachedBasketRepository>();
+
+        // services.AddScoped<IBasketRepository>(provider => 
+        // {
+        //     var basketRepository = provider.GetRequiredService<BasketRepository>();
+        //     return new CachedBasketRepository(basketRepository, provider.GetRequiredService<IDistributedCache>());
+        // });
+
         var connectionString = configuration.GetConnectionString("Database");
 
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
