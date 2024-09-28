@@ -15,7 +15,7 @@ public class UpdateProductCommandValidator : AbstractValidator<UpdateProductComm
     }
 }
 
-public class UpdateProductCommandHandler(CatalogDbContext dbContext) : ICommandHandler<UpdateProductCommand, UpdateProductResult>
+public class UpdateProductHandler(CatalogDbContext dbContext) : ICommandHandler<UpdateProductCommand, UpdateProductResult>
 {
     public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
     {
@@ -31,7 +31,7 @@ public class UpdateProductCommandHandler(CatalogDbContext dbContext) : ICommandH
 
         dbContext.Products.Update(product);
         await dbContext.SaveChangesAsync();
-
+    
         return new(true);
     }
 

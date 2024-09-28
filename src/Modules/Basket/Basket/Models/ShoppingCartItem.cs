@@ -16,7 +16,7 @@ public class ShoppingCartItem : Entity<Guid>
 
     public string ProductName { get; private set; } = default!;
 
-    internal ShoppingCartItem(Guid shoppingCartId, Guid productId, int quantity, string color, decimal price, string productName)   
+    internal ShoppingCartItem(Guid shoppingCartId, Guid productId, int quantity, string color, decimal price, string productName)
     {
         ShoppingCartId = shoppingCartId;
         ProductId = productId;
@@ -27,7 +27,7 @@ public class ShoppingCartItem : Entity<Guid>
     }
 
     [JsonConstructor]
-    internal ShoppingCartItem(Guid id, Guid shoppingCartId, Guid productId, int quantity, string color, decimal price, string productName)   
+    internal ShoppingCartItem(Guid id, Guid shoppingCartId, Guid productId, int quantity, string color, decimal price, string productName)
     {
         Id = id;
         ShoppingCartId = shoppingCartId;
@@ -36,5 +36,11 @@ public class ShoppingCartItem : Entity<Guid>
         Color = color;
         Price = price;
         ProductName = productName;
+    }
+
+    public void UpdatePrice(decimal newPrice)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(newPrice);
+        Price = newPrice;
     }
 }

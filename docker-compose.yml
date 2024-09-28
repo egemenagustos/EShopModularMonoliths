@@ -10,5 +10,11 @@ services:
   redis:
     image: redis
 
+  messagebus:
+    image: rabbitmq:3.6-management
+
+  identity:
+    image: quay.io/keycloak/keycloak:24.0.3
+
 volumes:
   postgres_eshopdb:
