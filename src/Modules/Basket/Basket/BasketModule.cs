@@ -1,3 +1,4 @@
+using Basket.Data.Processors;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,8 @@ public static class BasketModule
             options.AddInterceptors(sp.GetService<ISaveChangesInterceptor>());
             options.UseNpgsql(connectionString);
         });
+
+        services.AddHostedService<OutboxProcessor>();
 
         return services;
     }
