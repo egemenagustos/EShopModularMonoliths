@@ -1,5 +1,3 @@
-using Keycloak.AuthServices;
-using Keycloak.AuthServices.Authentication;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, config)
@@ -7,12 +5,13 @@ builder.Host.UseSerilog((context, config)
 
 var catalogAssembly = typeof(CatalogModule).Assembly;
 var basketAssembly = typeof(BasketModule).Assembly;
+var orderAssembly = typeof(OrderingModule).Assembly;
 
 builder.Services
-        .AddCarterWithAssemblies(catalogAssembly, basketAssembly);
+        .AddCarterWithAssemblies(catalogAssembly, basketAssembly, orderAssembly);
 
 builder.Services
-        .AddMediatRWithAssemblies(catalogAssembly, basketAssembly);
+        .AddMediatRWithAssemblies(catalogAssembly, basketAssembly, orderAssembly);
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
@@ -20,7 +19,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 
 builder.Services.
-        AddMassTransitWithAssemblies(builder.Configuration, catalogAssembly, basketAssembly);
+        AddMassTransitWithAssemblies(builder.Configuration, catalogAssembly, basketAssembly, orderAssembly);
 
 builder.Services.AddKeycloakWebApiAuthentication(builder.Configuration);
 builder.Services.AddAuthorization();

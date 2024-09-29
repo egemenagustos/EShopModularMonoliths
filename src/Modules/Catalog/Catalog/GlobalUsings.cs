@@ -18,3 +18,8 @@ global using FluentValidation;
 global using Catalog.Products.Exceptions;
 global using Catalog.Contracts.Products.Dtos;
 global using Catalog.Contracts.Products.Features.GetProductById;
+global using Microsoft.EntityFrameworkCore.Diagnostics;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Shared.Data;
+global using Shared.Data.Seed;
